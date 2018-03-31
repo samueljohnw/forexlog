@@ -10,7 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware' => ['auth']], function() {
+  Route::get('/', 'TradeController@index');
+  Route::post('/', 'TradeController@store');
+  Route::put('/{id}', 'TradeController@update');
+});
 
-Route::get('/', 'TradeController@index');
-Route::post('/', 'TradeController@store');
-Route::put('/{id}', 'TradeController@update');
+Auth::routes();

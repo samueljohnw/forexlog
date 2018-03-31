@@ -16,7 +16,7 @@ class TradeController extends Controller
      */
     public function index()
     {
-      $trades = Trade::with('images')->orderBy('created_at', 'desc')->get();
+      $trades = Trade::with('images')->where('user_id',auth()->user()->id)->orderBy('created_at', 'desc')->get();
       return view('trade.index',compact('trades'));
     }
 
@@ -29,8 +29,8 @@ class TradeController extends Controller
     public function store(Request $request)
     {
       $trade = request()->except(['_token']);
-      $trade = Trade::create($trade);
-
+      $trade['user_id'] = auth()->user()->id;
+      $trade = Trade::create($trade);    
       if (request()->hasFile('image'))
       {
         $path = request()->image->store('public');
