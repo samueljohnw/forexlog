@@ -1,0 +1,15 @@
+tr.cancelled{
+  background: #e1e1e1;
+}
+tr.lost{
+  background: #E55934;
+}
+tr.won{
+  background: #00CC66;
+}
+
+.highlight{
+  background:blue;
+  padding:5px;
+  color:#fff;
+}
